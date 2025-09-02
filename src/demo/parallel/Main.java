@@ -115,6 +115,7 @@ public class Main extends Application {
      */
     private Pane rootPane;
 
+
     /**
      * Calculation task
      */
@@ -666,7 +667,7 @@ public class Main extends Application {
      * @param fast true to disable antialiasing
      */
     private void render(boolean compareMode, boolean parallel, Runnable onDone, double minX, double minY, double maxX, double maxY, boolean fast) {
-        // double checking
+
         stopTask();
 
         task = new MandelbrotSetTask(parallel, wiOffscreen.getPixelWriter(),

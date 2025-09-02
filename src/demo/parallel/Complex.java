@@ -71,6 +71,11 @@ public class Complex {
         return this;
     }
 
+    public Complex minus(Complex b) {
+        re -= b.re;
+        im -= b.im;
+        return this;
+    }
     /**
      * Multiply operation.
      * @param  b multiplier
@@ -85,6 +90,37 @@ public class Complex {
         return this;
     }
 
+    public Complex divide(Complex b) {
+        double denominator = b.re * b.re + b.im * b.im;
+        double real = (re * b.re + im * b.im) / denominator;
+        double imag = (im * b.re - re * b.im) / denominator;
+        re = real;
+        im = imag;
+        return this;
+    }
+
+    public Complex power(int n) {
+        if (n == 0) {
+            re = 1;
+            im = 0;
+            return this;
+        }
+
+        Complex original = new Complex(re, im);
+        Complex result = new Complex(1, 0);
+
+        for (int i = 0; i < Math.abs(n); i++) {
+            result.times(original);
+        }
+
+        if (n < 0) {
+            result = new Complex(1, 0).divide(result);
+        }
+
+        re = result.re;
+        im = result.im;
+        return this;
+    }
     /**
      * Square of Complex object's length, we're using square of length to 
      * eliminate the computation of square root
